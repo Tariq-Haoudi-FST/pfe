@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Flaming Cube with Images and Descriptions</title>
+    <style>
+        body {
+            background-color: #000; /* خلفية سوداء */
+            margin: 0;
+            overflow: auto; /* السماح بالتمرير */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            position: relative;
+            padding-bottom: 60px; /* إضافة مساحة للقاعدة السفلية */
+        }
+        .top-left-content {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .content .person {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .content img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+            border: 2px solid #ff4500;
+            box-shadow: 0 0 10px #ff4500;
+        }
+        .description {
+            margin-top: 10px;
+            font-size: 20px;
+            text-align: left;
+        }
+        .scene-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed; /* تثبيت المكعب في منتصف الشاشة */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        .scene {
+            width: 200px;
+            height: 200px;
+            perspective: 600px;
+        }
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(45deg) rotateY(45deg);
+            animation: rotate 10s infinite linear;
+        }
+        .cube div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff4500;
+            box-shadow: 0 0 20px #ff4500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 1.2;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            color: #ff8c00;
+            text-shadow: 0 0 10px #ff8c00;
+        }
+        .cube .front { transform: translateZ(100px); }
+        .cube .back { transform: rotateY(180deg) translateZ(100px); }
+        .cube .right { transform: rotateY(90deg) translateZ(100px); }
+        .cube .left { transform: rotateY(-90deg) translateZ(100px); }
+        .cube .top { transform: rotateX(90deg) translateZ(100px); }
+        .cube .bottom { transform: rotateX(-90deg) translateZ(100px); }
+        @keyframes rotate {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+        .top-right-text {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 300px; /* تحديد عرض مناسب لنصك */
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(17, 17, 17, 0.8); /* خلفية شفافة قليلاً */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 16px;
+            border-top: 2px solid #ff4500;
+            z-index: 1;
+        }
+        .footer a {
+            color: #ff4500;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-left-content">
+        <div class="person">
+            <img src="{% static 'images/playza.PNG' %}" alt="Person 1">
+            <div class="description">
+                Je m'appelle Tariq Haoudi,<br>
+                étudiant à la Faculté des Sciences et Techniques de Tanger,<br>
+                spécialité Licence en Analyse de Données.<br>
+                Je travaille sur mon projet de fin d'études portant sur l'analyse,<br>
+                le nettoyage des données, la création de sites web,<br>
+                et la création de modèles de prédiction des vues et des utilisateurs potentiels.<br>
+                Je développe également une application Streamlit.
+            </div>
+            <img src="{% static 'images/playza2.jpg' %}" alt="Person 2">
+            <div class="description">
+                Je m'appelle Tariq Haoudi,<br>
+                étudiant à la Faculté des Sciences et Techniques de Tanger,<br>
+                spécialité Licence en Analyse de Données.<br>
+                Je travaille sur mon projet de fin d'études portant sur l'analyse,<br>
+                le nettoyage des données, la création de sites web,<br>
+                et la création de modèles de prédiction des vues et des utilisateurs potentiels.<br>
+                Je développe également une application Streamlit.
+            </div>
+        </div>
+    </div>
+    <div class="scene-container">
+        <div class="scene">
+            <div class="cube">
+                <div class="front">24</div>
+                <div class="back">24</div>
+                <div class="right">24</div>
+                <div class="left">24</div>
+                <div class="top">24</div>
+                <div class="bottom">24</div>
+            </div>
+        </div>
+    </div>
+    <div class="top-right-text">
+        <div class="description">
+            voi la les sorse de projecct<br>
+            le lien de project pfe en githup : <a href="https://github.com/Tariq-Haoudi-FST/APP.git" target="_blank">GitHub</a><br>
+            le lien de site de predction vu et utilisature en site : <a href="https://da-test-fdfovkkqk8nhmsvajzh7je.streamlit.app/" target="_blank">Streamlit</a><br>
+            le lien de visuliation ren poew pi : <a href="https://app.powerbi.com/links/m_GgtayceK?ctid=5c2fe400-c7db-4007-85f5-30119c0b1189&pbi_source=linkShare" target="_blank">Power BI</a><br>
+            le lien de cette moroco 24 : <a href="https://www.maroc24.com/" target="_blank">Maroc 24</a><br>
+            le lien de test sitte qui contiene le pade admine : pas encore
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            Tariq Haoudi - Tél: 0718002689 - Email: <a href="mailto:tariqhaoudi200205270@gmail.com">tariqhaoudi200205270@gmail.com</a><br>
+            Ali Ahmad Mazen - Tél: 0666666666 - Email: <a href="mailto:mazen2001@gmail.com">mazen2001@gmail.com</a>
+        </p>
+    </div>
+</body>
+</html>
